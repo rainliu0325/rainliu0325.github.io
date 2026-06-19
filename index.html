@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>麓湖</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,1,0" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="particleCanvas"></canvas>
+<nav>
+    <div class="logo" onclick="changePage(0)">
+        <svg viewBox="0 0 24 24"><path d="M12,2L1,21h22L12,2z M12,6l7.5,13h-15L12,6z M13,11v4h-2v-4H13z M13,17v2h-2v-2H13z"/></svg>
+        <h3>LUXIHU</h3>
+    </div>
+    <div class="nav-btns">
+        <button onclick="toggleTheme()" class="material-symbols-rounded">dark_mode</button>
+        <button onclick="toggleNav()" class="material-symbols-rounded">menu</button>
+    </div>
+</nav>
+<div class="sidenav">
+    <div class="logo"><svg viewBox="0 0 24 24"><path d="M12,2L1,21h22L12,2z M12,6l7.5,13h-15L12,6z M13,11v4h-2v-4H13z M13,17v2h-2v-2H13z"/></svg><h3>LUXIHU</h3><button onclick="toggleNav()" class="material-symbols-rounded">close</button></div>
+    <div><a href="#" onclick="changePageWithNav(0)" data-page="0" class="active">Home</a><a href="#" onclick="changePageWithNav(1)" data-page="1">Market</a><a href="#" onclick="changePageWithNav(2)" data-page="2">About</a><a href="#" onclick="changePageWithNav(3)" data-page="3">Contact</a><a href="#" onclick="changePageWithNav(4)" data-page="4">Account</a></div>
+</div>
+<div id="overlay" onclick="toggleNav()"></div>
+
+<main>
+    <div class="page active-page" id="page0">
+        <section class="home-slider"><div class="home-slider-holder"><div class="home-slide s1"><h2>Resell · Rediscover</h2><p>Pre-loved clothing, vintage electronics, and unique homeware.</p><button onclick="changePage(1)">Browse market</button></div><div class="home-slide s2"><h2>Circular style</h2><p>Give items a second life — sustainable, affordable, original.</p><button onclick="changePage(1)">Shop secondhand</button></div><div class="home-slide s3"><h2>Community curated</h2><p>Each piece tells a story. Find your next treasure today.</p><button onclick="changePage(4)">Join us</button></div></div><div class="slider-btns"><button onclick="slideLeft()" class="material-symbols-rounded">chevron_left</button><button onclick="slideRight()" class="material-symbols-rounded">chevron_right</button></div></section>
+        <section class="content">
+            <div class="stats-grid scroll-element left"><div class="stat-item"><div class="stat-number">1.2k+</div><div>happy swappers</div></div><div class="stat-item"><div class="stat-number">320+</div><div>items listed</div></div><div class="stat-item"><div class="stat-number">98%</div><div>eco-positive</div></div><div class="stat-item"><div class="stat-number">24/7</div><div>community</div></div></div>
+            <div class="feature-cards"><div class="feature-card scroll-element up"><svg viewBox="0 0 24 24" width="44" height="44" fill="var(--primary)"><path d="M12,2L1,21h22L12,2z M12,6l7.5,13h-15L12,6z"/></svg><h3>Authentic secondhand</h3><p class="text-light">Every item is gently used and verified.</p></div><div class="feature-card scroll-element up"><svg viewBox="0 0 24 24" width="44" height="44" fill="var(--primary)"><path d="M20 8h-2.81c-.45-.78-1.07-1.45-1.82-1.96L17 4.41 15.59 3l-2.17 2.17C12.96 5.06 12.49 5 12 5s-.96.06-1.41.17L8.41 3 7 4.41l1.62 1.63c-.75.51-1.37 1.18-1.82 1.96H4v2h2.09c-.05.33-.09.66-.09 1v1H4v2h2v1c0 .34.04.67.09 1H4v2h2.81c1.04 1.79 2.97 3 5.19 3s4.15-1.21 5.19-3H20v-2h-2.09c.05-.33.09-.66.09-1v-1h2v-2h-2v-1c0-.34-.04-.67-.09-1H20V8z"/></svg><h3>Clothing sizes marked</h3><p>Clear size guides for fashion items.</p></div><div class="feature-card scroll-element up"><svg viewBox="0 0 24 24" width="44" height="44" fill="var(--primary)"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg><h3>Checklist style</h3><p>Save items to a personal checklist with checkboxes.</p></div></div>
+        </section>
+    </div>
+    <div class="page" id="page1"><section class="content"><h1>secondhand market</h1><div class="search-section"><input type="text" id="searchInput" class="search-input" placeholder="search items..."><select id="sortSelect" class="sort-select"><option value="default">featured</option><option value="price-low">price low-high</option><option value="price-high">price high-low</option><option value="name">name A-Z</option></select></div><div class="filter-group" id="filterGroup"></div><div class="product-grid" id="productGrid"></div><div id="noResults" style="display:none; text-align:center; padding:40px;">no items match</div></section></div>
+    <div class="page" id="page2"><section class="content"><h1 class="scroll-element left">our story</h1><hr/><p class="scroll-element up">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p><br/><p class="scroll-element up">Secondhand is not second best — it is a statement. LUXIHU builds a bridge between preloved gems and new owners. Every item has a past and a future.</p></section></div>
+    <div class="page" id="page3"><section class="content"><h1>contact</h1><hr/><p><span class="material-symbols-rounded">mail</span> hello@luxihu.com</p><p><span class="material-symbols-rounded">call</span> +44 (0)20 7946 0138</p><p><span class="material-symbols-rounded">location_on</span> balbla</p><br><br><br></section></div>
+    <div class="page" id="page4"><section class="content" style="max-width:540px; margin:0 auto;"><div id="loginBox" class="scroll-element up" style="background:var(--bg-two); padding:32px; border-radius:36px;"><h2>welcome back</h2><input type="text" id="loginPhone" placeholder="phone number" class="search-input" style="width:100%; margin:15px 0;"><input type="password" id="loginPassword" placeholder="password" class="search-input" style="width:100%; margin-bottom:20px;"><button class="btn-primary" id="loginBtn" style="width:100%">sign in</button><p style="margin-top:20px; text-align:center;"><a href="#" id="showSignup" style="color:var(--primary);">create account</a></p></div><div id="signupBox" style="display:none; background:var(--bg-two); padding:32px; border-radius:36px;"><h2>join us</h2><input type="text" id="signupName" placeholder="full name" class="search-input" style="width:100%; margin:15px 0;"><input type="text" id="signupPhone" placeholder="phone" class="search-input" style="width:100%; margin-bottom:15px;"><input type="password" id="signupPassword" placeholder="password" class="search-input" style="width:100%; margin-bottom:20px;"><button class="btn-primary" id="signupBtn" style="width:100%">register</button><p style="margin-top:20px; text-align:center;"><a href="#" id="showLogin" style="color:var(--primary);">back to login</a></p></div><div id="dashboard" style="display:none;"><div class="flex-row" style="display:flex; justify-content:space-between; align-items:center;"><div style="display:flex; gap:18px; align-items:center;"><div class="avatar" id="avatarPreview" onclick="document.getElementById('avatarFile').click()"><span class="material-symbols-rounded" style="font-size:38px;">person</span></div><div><h3 id="welcomeName"></h3><p id="welcomePhone"></p></div></div><button class="btn-primary" id="logoutBtn">logout</button></div><input type="file" id="avatarFile" accept="image/*" style="display:none;"><div class="dashboard-stats"><div class="stat-card"><h4>Saved items</h4><div class="stat-value" id="totalOrders">0</div></div><div class="stat-card"><h4>Estimated value</h4><div class="stat-value" id="totalSpent">¥0</div></div></div><h4>my checklist</h4><div id="recentOrders" style="font-size:0.9rem; margin-top:12px;"></div></div></section></div>
+</main>
+
+<footer><div class="footer-content" style="text-align:center;"><div class="logo" style="justify-content:center;"><svg viewBox="0 0 24 24" width="28" height="28"><path d="M12,2L1,21h22L12,2z M12,6l7.5,13h-15L12,6z"/></svg><h3>LUXIHU</h3></div><p>secondhand community · circular economy</p><div class="footer-links" style="display:flex; gap:24px; justify-content:center; flex-wrap:wrap;"><a href="#" onclick="changePage(0)">Home</a><a href="#" onclick="changePage(1)">Market</a><a href="#" onclick="changePage(2)">About</a><a href="#" onclick="changePage(3)">Contact</a><a href="#" onclick="changePage(4)">Account</a></div><div class="copyright">© 2025 LUXIHU — all rights reserved</div></div></footer>
+
+<div class="cart-sidebar" id="cartSidebar"><div class="cart-header"><h3>my checklist</h3><button id="closeCart" style="background:none; border:none; font-size:28px; cursor:pointer;">×</button></div><div class="cart-items" id="cartItems"></div><div class="cart-footer"><div style="display:flex; justify-content:space-between;"><span>total value</span><span id="cartTotal">¥0</span></div><button class="btn-primary" id="checkoutBtn" style="width:100%; margin-top:16px;">clear checked</button></div></div>
+<button id="cartBtn" style="position:fixed; bottom:24px; right:24px; background:var(--primary); border:none; width:54px; height:54px; border-radius:50%; color:white; cursor:pointer; z-index:100; box-shadow:0 8px 20px rgba(0,0,0,0.2);"><span class="material-symbols-rounded">shopping_cart</span><span id="cartBadge" style="position:absolute; top:-4px; right:-4px; background:#d9534f; width:22px; border-radius:50%; font-size:12px;">0</span></button>
+<script src="script.js"></script>
+</body>
+</html>
